@@ -7,6 +7,15 @@ public class Smartphone implements Radio, GPS {
     private String brandName;
     private List<Friend> contactList;
 
+    public Smartphone() {
+    }
+
+    public Smartphone(String modelName, String brandName, List<Friend> contactList) {
+        this.modelName = modelName;
+        this.brandName = brandName;
+        this.contactList = contactList;
+    }
+
     @Override
     public String getPosition() {
         return new String("Berlin-Wilmersdorf");
@@ -46,5 +55,14 @@ public class Smartphone implements Radio, GPS {
 
     public List<Friend> getContactList() {
         return contactList;
+    }
+
+    @Override
+    public String toString() {
+        return "Smartphone{" +
+                "modelName='" + modelName + '\'' +
+                ", brandName='" + brandName + '\'' +
+                ", contactList=" + contactList +
+                '}';
     }
 }
