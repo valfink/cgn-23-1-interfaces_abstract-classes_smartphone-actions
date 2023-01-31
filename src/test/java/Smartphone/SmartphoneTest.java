@@ -13,7 +13,7 @@ public class SmartphoneTest {
         // GIVEN
         Smartphone p = new Smartphone();
         p.setModelName("Newest Phone");
-        String expected = "Newest iPhone";
+        String expected = "Newest Phone";
 
         // WHEN
         String result = p.getModelName();
