@@ -13,7 +13,7 @@ public class SmartphoneTest {
         // GIVEN
         Smartphone p = new Smartphone();
         p.setModelName("Newest Phone");
-        String expected = "Newest Phone";
+        String expected = "Newest iPhone";
 
         // WHEN
         String result = p.getModelName();
@@ -40,13 +40,13 @@ public class SmartphoneTest {
     void contactList() {
         // GIVEN
         Smartphone p = new Smartphone();
-        List<Friend> contactList = new ArrayList<>();
+        List<Contact> contactList = new ArrayList<>();
         contactList.add(new Friend("Valentin Finke", "0157 7424 7505"));
         p.setContactList(contactList);
-        List<Friend> expected = contactList;
+        List<Contact> expected = contactList;
 
         // WHEN
-        List<Friend> result = p.getContactList();
+        List<Contact> result = p.getContactList();
 
         // THEN
         assertEquals(expected, result);
@@ -92,7 +92,7 @@ public class SmartphoneTest {
     @Test
     void constructor_withData() {
         // GIVEN
-        List<Friend> contactList = new ArrayList<>();
+        List<Contact> contactList = new ArrayList<>();
         contactList.add(new Friend("Valentin Finke", "0157 7424 7505"));
         Smartphone p = new Smartphone("Newest Phone", "Ikea", contactList);
         String expected = "Newest Phone";
@@ -119,7 +119,7 @@ public class SmartphoneTest {
     @Test
     void testToString() {
         // GIVEN
-        List<Friend> contactList = new ArrayList<>();
+        List<Contact> contactList = new ArrayList<>();
         contactList.add(new Friend("Valentin Finke", "0157 7424 7505"));
         contactList.add(new Friend("Gleb Abramov", "123 456 789"));
         contactList.add(new Friend("Alaa Jouri", "012 345 678"));
@@ -132,6 +132,84 @@ public class SmartphoneTest {
 
         // THEN
         assertEquals(expected, result);
+    }
+
+    @Test
+    void addContact() {
+        // GIVEN
+        List<Contact> contactList = new ArrayList<>();
+        contactList.add(new Friend("Valentin Finke", "0157 7424 7505"));
+        contactList.add(new Friend("Gleb Abramov", "123 456 789"));
+        contactList.add(new Friend("Alaa Jouri", "012 345 678"));
+        Smartphone p = new Smartphone("Newest Phone", "Ikea", contactList);
+        Friend newFriend = new Friend("Lena Ruppert", "234 567 890");
+        p.addContact(newFriend);
+        String expected = "Smartphone{modelName='Newest Phone', brandName='Ikea', contactList=[Friend{telNumber='0157 7424 7505', name='Valentin Finke'}, Friend{telNumber='123 456 789', name='Gleb Abramov'}, Friend{telNumber='012 345 678', name='Alaa Jouri'}, Friend{telNumber='234 567 890', name='Lena Ruppert'}]}";
+
+        // WHEN
+        String result = p.toString();
+
+        // THEN
+        assertEquals(expected, result);
+    }
+
+    @Test
+    void getContact() {
+        // GIVEN
+        List<Contact> contactList = new ArrayList<>();
+        contactList.add(new Friend("Valentin Finke", "0157 7424 7505"));
+        contactList.add(new Friend("Gleb Abramov", "123 456 789"));
+        contactList.add(new Friend("Alaa Jouri", "012 345 678"));
+        Smartphone p = new Smartphone("Newest Phone", "Ikea", contactList);
+        Friend newFriend = new Friend("Lena Ruppert", "234 567 890");
+        p.addContact(newFriend);
+        Contact expected = newFriend;
+
+        // WHEN
+        Contact result = p.getContact(3);
+
+        // THEN
+        assertEquals(expected, result);
+    }
+
+    @Test
+    void getContactByName() {
+        // GIVEN
+        List<Contact> contactList = new ArrayList<>();
+        contactList.add(new Friend("Valentin Finke", "0157 7424 7505"));
+        contactList.add(new Friend("Gleb Abramov", "123 456 789"));
+        contactList.add(new Friend("Alaa Jouri", "012 345 678"));
+        Smartphone p = new Smartphone("Newest Phone", "Ikea", contactList);
+        Friend newFriend = new Friend("Lena Ruppert", "234 567 890");
+        p.addContact(newFriend);
+        Contact expected = newFriend;
+
+        // WHEN
+        Contact result = p.getContactByName("Lena Ruppert");
+
+        // THEN
+        assertEquals(expected, result);
+    }
+
+    @Test
+    void removeContactByName() {
+        // GIVEN
+        List<Contact> contactList = new ArrayList<>();
+        contactList.add(new Friend("Valentin Finke", "0157 7424 7505"));
+        contactList.add(new Friend("Gleb Abramov", "123 456 789"));
+        contactList.add(new Friend("Alaa Jouri", "012 345 678"));
+        Smartphone p = new Smartphone("Newest Phone", "Ikea", contactList);
+        Friend newFriend = new Friend("Lena Ruppert", "234 567 890");
+        p.addContact(newFriend);
+        Contact expectedDeletedContact = newFriend;
+
+        // WHEN
+        Contact resultingContact = p.removeContactByName("Lena Ruppert");
+        List<Contact> resultingContactList = p.getContactList();
+
+        // THEN
+        assertEquals(expectedDeletedContact, resultingContact);
+        assertEquals(contactList, resultingContactList);
     }
 
 }

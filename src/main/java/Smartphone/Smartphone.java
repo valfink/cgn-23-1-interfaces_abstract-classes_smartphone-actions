@@ -1,16 +1,18 @@
 package Smartphone;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Smartphone implements Radio, GPS {
     private String modelName;
     private String brandName;
-    private List<Friend> contactList;
+    private List<Contact> contactList;
 
     public Smartphone() {
+        this.contactList = new ArrayList<>();
     }
 
-    public Smartphone(String modelName, String brandName, List<Friend> contactList) {
+    public Smartphone(String modelName, String brandName, List<Contact> contactList) {
         this.modelName = modelName;
         this.brandName = brandName;
         this.contactList = contactList;
@@ -18,7 +20,7 @@ public class Smartphone implements Radio, GPS {
 
     @Override
     public String getPosition() {
-        return new String("Berlin-Wilmersdorf");
+        return "Berlin-Wilmersdorf";
     }
 
     @Override
@@ -49,11 +51,11 @@ public class Smartphone implements Radio, GPS {
         return brandName;
     }
 
-    public void setContactList(List<Friend> contactList) {
+    public void setContactList(List<Contact> contactList) {
         this.contactList = contactList;
     }
 
-    public List<Friend> getContactList() {
+    public List<Contact> getContactList() {
         return contactList;
     }
 
@@ -64,5 +66,32 @@ public class Smartphone implements Radio, GPS {
                 ", brandName='" + brandName + '\'' +
                 ", contactList=" + contactList +
                 '}';
+    }
+
+    public void addContact(Contact contact) {
+        contactList.add(contact);
+    }
+
+    public Contact getContact(int i) {
+        return contactList.get(i);
+    }
+
+    public Contact getContactByName(String contactName) {
+        for (Contact c : contactList) {
+            if (c.getName().equals(contactName)) {
+                return c;
+            }
+        }
+        return null;
+    }
+
+    public Contact removeContactByName(String contactName) {
+        for (Contact c : contactList) {
+            if (c.getName().equals(contactName)) {
+                contactList.remove(c);
+                return c;
+            }
+        }
+        return null;
     }
 }

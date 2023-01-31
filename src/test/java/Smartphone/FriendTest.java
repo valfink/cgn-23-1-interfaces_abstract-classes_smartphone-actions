@@ -50,13 +50,12 @@ public class FriendTest {
     void testConstructor_empty() {
         // GIVEN
         Friend f = new Friend();
-        String expected = null;
 
         // WHEN
         String result = f.getTelNumber();
 
         // THEN
-        assertEquals(expected, result);
+        assertNull(result);
     }
 
     @Test

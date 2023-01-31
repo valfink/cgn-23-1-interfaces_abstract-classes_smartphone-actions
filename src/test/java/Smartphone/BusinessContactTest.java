@@ -43,4 +43,17 @@ public class BusinessContactTest {
         assertNull(result);
     }
 
+    @Test
+    void toString_test() {
+        // GIVEN
+        BusinessContact c = new BusinessContact("Valentin Finke", "0157 7424 7505", "Open For Work");
+        String expected = "BusinessContact{companyName='Open For Work', telNumber='0157 7424 7505', name='Valentin Finke'}";
+
+        // WHEN
+        String result = c.toString();
+
+        // THEN
+        assertEquals(expected, result);
+    }
+
 }
