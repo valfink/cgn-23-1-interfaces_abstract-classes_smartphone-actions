@@ -9,16 +9,18 @@ public class Smartphone implements Radio, GPS {
 
     @Override
     public String getPosition() {
-        return null;
+        return new String("Berlin-Wilmersdorf");
     }
 
     @Override
     public boolean startRadio() {
-        return false;
+        System.out.println("Radio started");
+        return true;
     }
 
     @Override
     public boolean stopRadio() {
+        System.out.println("Radio stopped");
         return false;
     }
 

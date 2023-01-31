@@ -52,4 +52,28 @@ public class SmartphoneTest {
         assertEquals(expected, result);
     }
 
+    @Test
+    void startRadio() {
+        // GIVEN
+        Smartphone p = new Smartphone();
+
+        // WHEN
+        boolean result = p.startRadio();
+
+        // THEN
+        assertTrue(result);
+    }
+
+    @Test
+    void stopRadio() {
+        // GIVEN
+        Smartphone p = new Smartphone();
+
+        // WHEN
+        boolean result = p.stopRadio();
+
+        // THEN
+        assertFalse(result);
+    }
+
 }
